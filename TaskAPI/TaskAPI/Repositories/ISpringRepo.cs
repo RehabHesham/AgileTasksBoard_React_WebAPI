@@ -1,0 +1,14 @@
+﻿using System.Collections.Generic;
+using TaskAPI.Models;
+
+namespace TaskAPI.Repositories
+{
+    public interface ISpringRepo
+    {
+        int Create(Spring spring);
+        List<Spring> GetAll();
+        Spring GetById(int id);
+        int Remove(Spring spring);
+        int Update(Spring spring);
+    }
+}
