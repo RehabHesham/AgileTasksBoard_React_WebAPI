@@ -40,12 +40,8 @@ function AsideT() {
         <List>
           {/* "Projects", */}
           {["Springs", "Tasks"].map((text, index) => (
-            <Link
-              className="text-dark text-decoration-none"
-              key={text}
-              to={text}
-            >
-              <ListItem disablePadding>
+            <Link className="text-dark text-decoration-none" to={text}>
+              <ListItem key={text} disablePadding>
                 <ListItemButton>
                   <ListItemIcon>{panel1icons[index]}</ListItemIcon>
                   <ListItemText className="d-none d-sm-block" primary={text} />
@@ -58,14 +54,13 @@ function AsideT() {
         <List>
           <Link
             className="text-dark text-decoration-none"
-            to="Backlogs"
-            key="Backlogs"
+            to="/AssignSpringTask"
           >
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>
                   <span
-                    className="iconify"
+                    class="iconify"
                     data-icon="fluent:clipboard-task-list-ltr-20-regular"
                     data-width="27"
                     data-height="27"
@@ -78,11 +73,7 @@ function AsideT() {
               </ListItemButton>
             </ListItem>
           </Link>
-          <Link
-            className="text-dark text-decoration-none"
-            key="TaskBoard"
-            to="TaskBoard"
-          >
+          <Link className="text-dark text-decoration-none" to="/ManageTasks">
             <ListItem disablePadding>
               <ListItemButton>
                 <ListItemIcon>

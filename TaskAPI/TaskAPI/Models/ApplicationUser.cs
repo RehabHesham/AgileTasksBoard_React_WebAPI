@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace TaskAPI.Models
 {
-    public class ApplicationUser
+    public class ApplicationUser : IdentityUser
     {
-        public string Id { get; set; }
+        //Navigation Property
         public List<WorkersProjects> projects { get; set; }
         public List<Task> tasks { get; set; }   
     }

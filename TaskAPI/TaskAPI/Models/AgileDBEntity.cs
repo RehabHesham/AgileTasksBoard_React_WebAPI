@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskAPI.Models
 {
-    public class AgileDBEntity : DbContext
+    public class AgileDBEntity : IdentityDbContext<ApplicationUser>
     {
         public AgileDBEntity()
         {

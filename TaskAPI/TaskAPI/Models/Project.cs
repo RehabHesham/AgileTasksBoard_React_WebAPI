@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskAPI.Models
@@ -7,15 +8,20 @@ namespace TaskAPI.Models
     public class Project
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
-        public TimeSpan Duration { get; set; }
+
+        public decimal? EffortHours { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Client { get; set; }
 
         //Forien key
-        [ForeignKey("Owner")]
+        [Required,ForeignKey("Owner")]
         public string OwnerId { get; set; }
 
         //Navigation Property

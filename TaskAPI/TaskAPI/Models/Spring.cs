@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TaskAPI.Models
@@ -7,11 +8,15 @@ namespace TaskAPI.Models
     public class Spring
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
+        [Required]
         public DateTime EndDate { get; set; }
 
         //Foreign Key
+        [Required]
         [ForeignKey("Project")]
         public int ProjectId { get; set; }
 

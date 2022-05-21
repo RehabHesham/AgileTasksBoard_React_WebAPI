@@ -45,7 +45,7 @@ namespace TaskAPI.Repositories
                 Project oldProject = GetById(project.Id);
                 oldProject.Name = project.Name;
                 oldProject.Description = project.Description;
-                oldProject.Duration = project.Duration;
+                oldProject.EffortHours = project.EffortHours;
                 oldProject.EndDate = project.EndDate;
                 oldProject.StartDate = project.StartDate;
                 oldProject.Client = project.Client;
