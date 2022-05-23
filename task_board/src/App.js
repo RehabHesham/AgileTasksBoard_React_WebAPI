@@ -3,7 +3,6 @@ import './App.css';
 import React from 'react';
 import FooterT from './Components/nav_footer_aside/FooterT';
 import NavbarT from './Components/nav_footer_aside/NavbarT';
-import AsideT from './Components/nav_footer_aside/AsideT';
 import SpringPage from './Components/SpringRelated/SpringPage';
 import TasksPage from './Components/TaskRelated/TasksPage';
 import AssignSpringTask from './Components/SpringRelated/AssignSpringTask';
@@ -25,20 +24,23 @@ function App() {
       <div className='row'>
 
         <Routes>
-          <Route path="/" element={<MainContent />}>
+          <Route path="/" element={<MainContent />} >
+            <Route index element={<Home />} />
             <Route path="Home" element={<Home />} />
             <Route path="AboutUs" element={<AboutUs />} />
             <Route path="ContactUs" element={<ContactUs />} />
-            <Route path="/Register" element={<Register />} />
-            <Route path="/Login" element={<Login />} />
+            <Route path="Register" element={<Register />} />
+            <Route path="Login" element={<Login />} />
           </Route>
-          <Route path="/Projects" element={<ProjectsPage />} />
-          <Route path="/Project/:id" element={<ProjectManagement />}>
+          <Route path="Projects" element={<ProjectsPage />} />
+          <Route path="Project/:id" element={<ProjectManagement />}>
+            <Route index element={<SpringPage />} />
             <Route path="Springs" element={<SpringPage />} />
             <Route path="Tasks" element={<TasksPage />} />
             <Route path="Backlogs" element={<AssignSpringTask />} />
             <Route path="TaskBoard" element={<ManageTasks />} />
           </Route>
+          <Route path="*" element={<Navigate to="/Home" replace />} />
         </Routes>
       </div>
 

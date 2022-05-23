@@ -3,8 +3,6 @@ import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
 function MainContent() {
-  let drawerWidth = 240;
-  let drawer = "d";
   return (
     <>
       <Toolbar />

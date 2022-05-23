@@ -1,9 +1,10 @@
 import { Toolbar } from "@mui/material";
 import React from "react";
 import "../../assets/css/style.css";
-import logo from "../../assets/images/counts-img.svg";
+// import logo from "../../assets/images";
 
 function AboutUs() {
+  let img = "src/assets/images/counts-img.svg";
   return (
     <>
       <main id="main">
@@ -81,7 +82,7 @@ function AboutUs() {
                 data-aos="fade-right"
                 data-aos-delay="150"
               >
-                <img src={logo} alt="" className="img-fluid" />
+                <img src={img} alt="" className="img-fluid" />
               </div>
 
               <div
