@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using TaskAPI.Models;
-using TaskAPI.Repositories;
+using TaskAPI.DTOs;
+using TaskAPI.Services;
 
 namespace TaskAPI.Controllers
 {
@@ -10,24 +10,30 @@ namespace TaskAPI.Controllers
     [ApiController]
     public class SpringController : ControllerBase
     {
-        private readonly SpringRepo springRepo;
+        private ISpringService springService;
 
-        public SpringController(SpringRepo _springRepo)
+        public SpringController(ISpringService springService)
         {
-            springRepo = _springRepo;
+            this.springService = springService;
         }
         // GET: api/Spring
         [HttpGet]
-        public ActionResult<List<Spring>> GetSprings()
+        public ActionResult<List<SpringDTO>> GetSprings()
         {
-            return springRepo.GetAll();
+            return springService.GetAll();
+        }
+        // GET: api/Spring
+        [HttpGet("projectId={id:int}")]
+        public ActionResult<List<SpringDTO>> GetSprings(int id)
+        {
+            return springService.FindByProject(id);
         }
 
         // GET: api/Spring/5
-        [HttpGet("{id}")]
-        public ActionResult<Spring> GetSpring(int id)
+        [HttpGet("{id:int}")]
+        public ActionResult<SpringDTO> GetSpring(int id)
         {
-            var spring = springRepo.GetById(id);
+            var spring = springService.GetById(id);
 
             if (spring == null)
             {
@@ -39,14 +45,14 @@ namespace TaskAPI.Controllers
 
         // PUT: api/Spring/5
         [HttpPut("{id}")]
-        public IActionResult UpdateSpring(int id, Spring spring)
+        public IActionResult UpdateSpring(int id, SpringDTO spring)
         {
             if (id != spring.Id)
             {
                 return BadRequest();
             }
 
-            int result = springRepo.Update(spring);
+            int result = springService.Update(spring);
 
             if (result != -1)
             {
@@ -57,9 +63,14 @@ namespace TaskAPI.Controllers
 
         // POST: api/Spring
         [HttpPost]
-        public ActionResult<Spring> AddSpring(Spring spring)
+        public ActionResult<SpringDTO> AddSpring(SpringDTO spring)
         {
-            springRepo.Create(spring);
+            int result = springService.Create(spring);
+            if (result <= 0)
+            {
+                return StatusCode(500);
+            }
+            spring.Id = result;
             return CreatedAtAction("GetSpring", new { id = spring.Id }, spring);
         }
 
@@ -67,13 +78,13 @@ namespace TaskAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteSpring(int id)
         {
-            var spring = springRepo.GetById(id);
+            var spring = springService.GetById(id);
             if (spring == null)
             {
                 return NotFound();
             }
 
-            springRepo.Remove(spring);
+            springService.Remove(spring);
 
             return NoContent();
         }

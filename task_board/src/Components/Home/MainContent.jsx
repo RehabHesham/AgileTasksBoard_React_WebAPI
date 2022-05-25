@@ -8,7 +8,7 @@ function MainContent() {
       <Toolbar />
       <nav class="navbar-expand-lg navbar-light bg-light p-2">
         <div className="row">
-          <div className="col-8">
+          <div className="col-8 d-flex align-items-center">
             <ul class="nav">
               <li class="nav-item">
                 <Link to="Home" className="nav-link active text-dark">

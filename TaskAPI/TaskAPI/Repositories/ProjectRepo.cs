@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaskAPI.Models;
@@ -19,7 +20,7 @@ namespace TaskAPI.Repositories
         }
         public Project GetById(int id)
         {
-            return db.projects.SingleOrDefault(p => p.Id == id);
+            return db.projects.Include(p=>p.Springs).Include(p=>p.Tasks).SingleOrDefault(p => p.Id == id);
         }
         public int Create(Project project)
         {
@@ -28,7 +29,8 @@ namespace TaskAPI.Repositories
                 try
                 {
                     db.projects.Add(project);
-                    return db.SaveChanges();
+                    db.SaveChanges();
+                    return project.Id;
                 }
                 catch (Exception ex)
                 {

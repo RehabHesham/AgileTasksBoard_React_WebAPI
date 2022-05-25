@@ -1,4 +1,3 @@
-import { Toolbar } from "@mui/material";
 import React from "react";
 import "../../assets/css/style.css";
 
@@ -27,17 +26,37 @@ function ContactUs() {
                     congue.
                   </p>
                   <div className="social-links">
-                    <a href="#" className="twitter">
-                      <i className="bi bi-twitter"></i>
+                    <a href="#!" className="twitter">
+                      <span
+                        className="iconify"
+                        data-icon="akar-icons:twitter-fill"
+                        data-width="20"
+                        data-height="20"
+                      ></span>
                     </a>
-                    <a href="#" className="facebook">
-                      <i className="bi bi-facebook"></i>
+                    <a href="#!" className="facebook">
+                      <span
+                        className="iconify"
+                        data-icon="brandico:facebook"
+                        data-width="20"
+                        data-height="20"
+                      ></span>
                     </a>
-                    <a href="#" className="instagram">
-                      <i className="bi bi-instagram"></i>
+                    <a href="#!" className="instagram">
+                      <span
+                        className="iconify"
+                        data-icon="akar-icons:instagram-fill"
+                        data-width="20"
+                        data-height="20"
+                      ></span>
                     </a>
-                    <a href="#" className="linkedin">
-                      <i className="bi bi-linkedin"></i>
+                    <a href="#!" className="linkedin">
+                      <span
+                        className="iconify"
+                        data-icon="akar-icons:linkedin-fill"
+                        data-width="20"
+                        data-height="20"
+                      ></span>
                     </a>
                   </div>
                 </div>
@@ -49,8 +68,13 @@ function ContactUs() {
                 data-aos-delay="200"
               >
                 <div className="info">
-                  <div>
-                    <i className="ri-map-pin-line"></i>
+                  <div className="d-flex">
+                    <span
+                      className="iconify text-primary"
+                      data-icon="bx:map"
+                      data-width="40"
+                      data-height="40"
+                    ></span>
                     <p>
                       A108 Adam Street
                       <br />
@@ -58,13 +82,23 @@ function ContactUs() {
                     </p>
                   </div>
 
-                  <div>
-                    <i className="ri-mail-send-line"></i>
+                  <div className="d-flex">
+                    <span
+                      className="iconify text-primary"
+                      data-icon="majesticons:mail-line"
+                      data-width="30"
+                      data-height="30"
+                    ></span>
                     <p>info@example.com</p>
                   </div>
 
-                  <div>
-                    <i className="ri-phone-line"></i>
+                  <div className="d-flex">
+                    <span
+                      className="iconify text-primary"
+                      data-icon="ant-design:phone-filled"
+                      data-width="30"
+                      data-height="30"
+                    ></span>
                     <p>+1 5589 55488 55s</p>
                   </div>
                 </div>

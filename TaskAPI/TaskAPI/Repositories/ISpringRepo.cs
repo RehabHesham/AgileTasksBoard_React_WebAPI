@@ -7,6 +7,7 @@ namespace TaskAPI.Repositories
     {
         int Create(Spring spring);
         List<Spring> GetAll();
+        List<Spring> FindByProject(int id);
         Spring GetById(int id);
         int Remove(Spring spring);
         int Update(Spring spring);

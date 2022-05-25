@@ -1,0 +1,63 @@
+import { Toolbar } from "@mui/material";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+
+function LoggedInNav({ project }) {
+  let { id } = useParams();
+  const logout = () => {
+    console.log("logout");
+  };
+  return (
+    <>
+      <Toolbar />
+      <nav className="navbar-expand-lg navbar-light bg-light p-2">
+        <div className="row">
+          <div className="col-8 d-flex align-items-center">
+            {id ? (
+              <ul className="nav">
+                <li className="nav-item">
+                  <span className=" ps-3">/</span>{" "}
+                  <Link
+                    to="/Projects"
+                    className="nav-link active text-dark d-inline-block"
+                  >
+                    Projects
+                  </Link>{" "}
+                  / <span className="p-3">{project.name}</span>
+                </li>
+              </ul>
+            ) : (
+              <ul className="nav">
+                <li className="nav-item">
+                  <span className=" px-3">/</span> Projects
+                </li>
+              </ul>
+            )}
+          </div>
+          <div className="col-4  mb-0">
+            <ul className="nav justify-content-end">
+              <li className="nav-item mx-3 d-flex align-items-center">
+                <span
+                  className="iconify"
+                  data-icon="carbon:user-avatar-filled-alt"
+                  data-width="46"
+                  data-height="46"
+                ></span>
+              </li>
+              <li className="nav-item me-4">
+                <p
+                  onClick={logout}
+                  className="nav-link btn btn-primary text-light m-0"
+                >
+                  Log out
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </>
+  );
+}
+
+export default LoggedInNav;

@@ -88,6 +88,7 @@ namespace TaskAPI.Controllers
                             );
                         return Ok(new
                         {
+                            userId = user.Id,
                             token = new JwtSecurityTokenHandler().WriteToken(mytoken),
                             expiration = mytoken.ValidTo
                         });

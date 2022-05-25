@@ -21,6 +21,10 @@ namespace TaskAPI.Repositories
         {
             return db.springs.SingleOrDefault(p => p.Id == id);
         }
+        public List<Spring> FindByProject(int id)
+        {
+            return db.springs.Where(s=>s.ProjectId == id).ToList();
+        }
         public int Create(Spring spring)
         {
             if (spring != null)
@@ -28,7 +32,8 @@ namespace TaskAPI.Repositories
                 try
                 {
                     db.springs.Add(spring);
-                    return db.SaveChanges();
+                    db.SaveChanges();
+                    return spring.Id;
                 }
                 catch (Exception ex)
                 {

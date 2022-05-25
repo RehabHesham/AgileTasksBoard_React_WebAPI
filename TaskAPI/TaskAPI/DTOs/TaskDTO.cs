@@ -11,6 +11,8 @@ namespace TaskAPI.DTOs
         public string Description { get; set; }
         public int? Priority { get; set; }
         public int? Weight { get; set; }
+        [Required]
+        public string Status { get; set; } = "new";
 
         //Foreiegn Key
         public int? SpringId { get; set; }

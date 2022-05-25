@@ -35,7 +35,6 @@ function AsideT() {
   return (
     <>
       <div style={{ minHeight: 490 }}>
-        <Toolbar />
         <Divider />
         <List>
           {/* "Projects", */}

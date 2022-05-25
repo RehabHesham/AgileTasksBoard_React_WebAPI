@@ -19,6 +19,8 @@ namespace TaskAPI.Models
         public string Description { get; set; }
         [Required]
         public string Client { get; set; }
+        [Required]
+        public string Status { get; set; } = "new";
 
         //Forien key
         [Required,ForeignKey("Owner")]

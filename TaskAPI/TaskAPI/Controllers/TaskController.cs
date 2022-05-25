@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using TaskAPI.Models;
-using TaskAPI.Repositories;
+using TaskAPI.DTOs;
+using TaskAPI.Services;
 
 namespace TaskAPI.Controllers
 {
@@ -10,25 +10,25 @@ namespace TaskAPI.Controllers
     [ApiController]
     public class TaskController : ControllerBase
     {
-        private readonly TaskRepo taskRepo;
+        private readonly ITaskService taskService;
 
-        public TaskController(TaskRepo _taskRepo)
+        public TaskController(ITaskService taskService)
         {
-            taskRepo = _taskRepo;
+            this.taskService = taskService;
         }
 
         // GET: api/Task
         [HttpGet]
-        public ActionResult<List<Task>> GetTasks()
+        public ActionResult<List<TaskDTO>> GetTasks()
         {
-            return taskRepo.GetAll();
+            return taskService.GetAll();
         }
 
         // GET: api/Task/5
         [HttpGet("{id}")]
-        public ActionResult<Task> GetTask(int id)
+        public ActionResult<TaskDTO> GetTaskByID(int id)
         {
-            var task = taskRepo.GetById(id);
+            var task = taskService.GetById(id);
 
             if (task == null)
             {
@@ -38,16 +38,23 @@ namespace TaskAPI.Controllers
             return task;
         }
 
+        // GET: api/Task/5
+        [HttpGet("projectId={id:int}")]
+        public ActionResult<List<TaskDTO>> FindTaskByProject(int id)
+        {
+            return taskService.FindByProject(id);
+        }
+
         // PUT: api/Task/5
         [HttpPut("{id}")]
-        public IActionResult UpdateTask(int id, Task task)
+        public IActionResult UpdateTask(int id, TaskDTO task)
         {
             if (id != task.Id)
             {
                 return BadRequest();
             }
 
-            int result = taskRepo.Update(task);
+            int result = taskService.Update(task);
 
             if (result != -1)
             {
@@ -58,9 +65,14 @@ namespace TaskAPI.Controllers
 
         // POST: api/Task
         [HttpPost]
-        public ActionResult<Task> AddTask(Task task)
+        public ActionResult<TaskDTO> AddTask(TaskDTO task)
         {
-            taskRepo.Create(task);
+            int result = taskService.Create(task);
+            if (result <= 0)
+            {
+                return StatusCode(500);
+            }
+            task.Id = result;
             return CreatedAtAction("GetTask", new { id = task.Id }, task);
         }
 
@@ -68,13 +80,13 @@ namespace TaskAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteTask(int id)
         {
-            var task = taskRepo.GetById(id);
+            var task = taskService.GetById(id);
             if (task == null)
             {
                 return NotFound();
             }
 
-            taskRepo.Remove(task);
+            taskService.Remove(task);
 
             return NoContent();
         }

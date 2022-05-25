@@ -18,9 +18,14 @@ namespace TaskAPI.DTOs
         public string Description { get; set; }
         [Required]
         public string Client { get; set; }
+        [Required]
+        public string Status { get; set; } = "new";
 
         //Forien key
         [Required]
         public string OwnerId { get; set; }
+
+        public List<SpringDTO> springs { get; set; } = new List<SpringDTO>();
+        public List<TaskDTO> tasks { get; set; } = new List<TaskDTO>();
     }
 }

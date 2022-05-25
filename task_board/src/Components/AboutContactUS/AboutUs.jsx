@@ -1,10 +1,9 @@
 import { Toolbar } from "@mui/material";
 import React from "react";
 import "../../assets/css/style.css";
-// import logo from "../../assets/images";
+import logo from "../../assets/images/counts-img.svg";
 
 function AboutUs() {
-  let img = "src/assets/images/counts-img.svg";
   return (
     <>
       <main id="main">
@@ -82,7 +81,7 @@ function AboutUs() {
                 data-aos="fade-right"
                 data-aos-delay="150"
               >
-                <img src={img} alt="" className="img-fluid" />
+                <img src={logo} alt="" className="img-fluid" />
               </div>
 
               <div
@@ -96,7 +95,7 @@ function AboutUs() {
                       <div className="count-box">
                         <div className="d-flex">
                           <span
-                            class="iconify d-inline-block text-primary"
+                            className="iconify d-inline-block text-primary"
                             data-icon="entypo:emoji-happy"
                             data-width="40"
                             data-height="40"
@@ -116,7 +115,7 @@ function AboutUs() {
                       <div className="count-box">
                         <div className="d-flex">
                           <span
-                            class="iconify d-inline-block text-primary"
+                            className="iconify d-inline-block text-primary"
                             data-icon="iconoir:journal-page"
                             data-width="40"
                             data-height="40"
@@ -136,7 +135,7 @@ function AboutUs() {
                       <div className="count-box">
                         <div className="d-flex">
                           <span
-                            class="iconify d-inline-block text-primary"
+                            className="iconify d-inline-block text-primary"
                             data-icon="akar-icons:clock"
                             data-width="40"
                             data-height="40"
@@ -156,7 +155,7 @@ function AboutUs() {
                       <div className="count-box">
                         <div className="d-flex">
                           <span
-                            class="iconify d-inline-block text-primary"
+                            className="iconify d-inline-block text-primary"
                             data-icon="bi:award"
                             data-width="40"
                             data-height="40"

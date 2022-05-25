@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +13,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TaskAPI.Models;
+using TaskAPI.Repositories;
+using TaskAPI.Services;
 
 namespace TaskAPI
 {
@@ -29,6 +32,18 @@ namespace TaskAPI
         {
 
             services.AddControllers();
+
+            services.AddScoped<ITaskRepo, TaskRepo>();
+            services.AddScoped<IProjectRepo,ProjectRepo>();
+            services.AddScoped<ISpringRepo, SpringRepo>();
+
+            services.AddScoped<IConversions, Conversions>();
+
+            services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<ISpringService, SpringService>();
+            services.AddScoped<IProjectService, ProjectService>();
+
+            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AgileDBEntity>();
             services.AddDbContext<AgileDBEntity>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("cs"));

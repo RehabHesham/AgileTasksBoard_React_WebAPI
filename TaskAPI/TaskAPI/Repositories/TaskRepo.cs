@@ -21,6 +21,10 @@ namespace TaskAPI.Repositories
         {
             return db.tasks.SingleOrDefault(p => p.Id == id);
         }
+        public List<Task> FindByProject(int id)
+        {
+            return db.tasks.Where(t => t.ProjectId == id).ToList();
+        }
         public int Create(Task task)
         {
             if (task != null)
@@ -28,7 +32,8 @@ namespace TaskAPI.Repositories
                 try
                 {
                     db.tasks.Add(task);
-                    return db.SaveChanges();
+                    db.SaveChanges();
+                    return task.Id;
                 }
                 catch (Exception ex)
                 {
