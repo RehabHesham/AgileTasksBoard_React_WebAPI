@@ -52,6 +52,8 @@ namespace TaskAPI.Repositories
                 oldProject.StartDate = project.StartDate;
                 oldProject.Client = project.Client;
                 oldProject.OwnerId = project.OwnerId;
+                oldProject.PercentageDone = project.PercentageDone;
+                oldProject.Status = project.Status;
                 try
                 {
                     db.SaveChanges();
@@ -74,6 +76,10 @@ namespace TaskAPI.Repositories
             {
                 return -1;
             }
+        }
+        public Project GetByIdNoTrack(int id)
+        {
+            return db.projects.AsNoTracking().SingleOrDefault(p => p.Id == id);
         }
     }
 }

@@ -15,7 +15,11 @@ namespace TaskAPI.Models
         [Required]
         public DateTime EndDate { get; set; }
         [Required]
+        public int Duration { get; set; }
+        [Required]
         public string Status { get; set; } = "new";
+        [Required]
+        public int PercentageDone { get; set; }
 
         //Foreign Key
         [Required]

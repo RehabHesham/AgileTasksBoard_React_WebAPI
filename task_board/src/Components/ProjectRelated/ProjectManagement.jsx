@@ -12,7 +12,6 @@ function ProjectManagement() {
     getproject = async () => {
       console.log("get");
       let response = await projectApi.getProjectByID(id);
-      console.log(response);
       console.log(response.data);
       setproject(response.data);
     };
@@ -29,9 +28,11 @@ function ProjectManagement() {
         <AsideT />
       </div>
       <div className="col-10 col-sm-9">
-        {JSON.stringify(project.springs)}
-        {JSON.stringify(project.tasks)}
-        <Outlet context={[project, setproject]} />
+        {project ? (
+          <Outlet context={[project, setproject]} />
+        ) : (
+          <div>Loading...</div>
+        )}
       </div>
     </>
   );

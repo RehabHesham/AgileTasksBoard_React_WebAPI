@@ -5,6 +5,11 @@
       "ProjectGuid": "43740ad8-62fc-4785-b723-5b9bab028188",
       "DisplayName": "TaskAPI",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1

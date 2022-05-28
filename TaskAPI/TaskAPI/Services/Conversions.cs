@@ -27,6 +27,8 @@ namespace TaskAPI.Services
                 EndDate = project.EndDate,
                 StartDate = project.StartDate,
                 Client = project.Client,
+                PercentageDone = project.PercentageDone,
+                Status = project.Status,
                 EffortHours = project.EffortHours,
                 OwnerId = project.OwnerId,
             };
@@ -52,6 +54,8 @@ namespace TaskAPI.Services
                 EndDate = project.EndDate,
                 StartDate = project.StartDate,
                 Client = project.Client,
+                PercentageDone = project.PercentageDone,
+                Status = project.Status,
                 EffortHours = project.EffortHours,
                 OwnerId = project.OwnerId,
             };
@@ -74,12 +78,14 @@ namespace TaskAPI.Services
             {
                 Id = spring.Id,
                 Name = spring.Name,
+                Duration = spring.Duration,
                 StartDate = spring.StartDate,
                 EndDate = spring.EndDate,
+                PercentageDone = spring.PercentageDone,
+                Status = spring.Status,
                 ProjectId = spring.ProjectId,
             };
         }
-
         public Spring convertDTOtoSpring(SpringDTO spring)
         {
             return new Spring()
@@ -87,10 +93,15 @@ namespace TaskAPI.Services
                 Id = spring.Id,
                 Name = spring.Name,
                 StartDate = spring.StartDate,
+                Duration = (spring.EndDate - spring.StartDate).Days,
                 EndDate = spring.EndDate,
+                PercentageDone = spring.PercentageDone,
+                Status = spring.Status,
                 ProjectId = spring.ProjectId,
             };
         }
+        
+
         //Task
         public List<TaskDTO> convertListTaskToDTO(List<Task> taskList)
         {
@@ -111,6 +122,8 @@ namespace TaskAPI.Services
                 Priority = task.Priority,
                 Weight = task.Weight,
                 SpringId = task.SpringId,
+                PercentageDone = task.PercentageDone,
+                Status = task.Status,
                 ProjectId = task.ProjectId,
                 WorkerId = task.WorkerId
             };
@@ -125,6 +138,8 @@ namespace TaskAPI.Services
                 Priority = task.Priority,
                 Weight = task.Weight,
                 SpringId = task.SpringId,
+                PercentageDone = task.PercentageDone,
+                Status = task.Status,
                 ProjectId = task.ProjectId,
                 WorkerId = task.WorkerId
             };

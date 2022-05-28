@@ -9,6 +9,7 @@ namespace TaskAPI.Services
         List<SpringDTO> GetAll();
         List<SpringDTO> FindByProject(int id);
         SpringDTO GetById(int id);
+        SpringDTO GetByIdNoTrack(int id);
         int Remove(SpringDTO spring);
         int Update(SpringDTO spring);
     }

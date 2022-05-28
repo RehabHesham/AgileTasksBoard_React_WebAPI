@@ -5,7 +5,6 @@ import {
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Toolbar,
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -13,19 +12,19 @@ import { Link } from "react-router-dom";
 function AsideT() {
   let panel1icons = [
     // <span
-    //   className="iconify"
+    //   className="iconify text-primary"
     //   data-icon="ant-design:project-filled"
     //   data-width="24"
     //   data-height="24"
     // ></span>,
     <span
-      className="iconify"
+      className="iconify text-primary"
       data-icon="simple-icons:spring-creators"
       data-width="24"
       data-height="24"
     ></span>,
     <span
-      className="iconify"
+      className="iconify text-primary"
       data-icon="fluent:task-list-ltr-20-filled"
       data-width="24"
       data-height="24"
@@ -64,7 +63,7 @@ function AsideT() {
               <ListItemButton>
                 <ListItemIcon>
                   <span
-                    className="iconify"
+                    className="iconify text-primary"
                     data-icon="fluent:clipboard-task-list-ltr-20-regular"
                     data-width="27"
                     data-height="27"
@@ -86,7 +85,7 @@ function AsideT() {
               <ListItemButton>
                 <ListItemIcon>
                   <span
-                    className="iconify"
+                    className="iconify text-primary"
                     data-icon="carbon:task-settings"
                     data-width="24"
                     data-height="24"

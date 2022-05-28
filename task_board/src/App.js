@@ -16,6 +16,10 @@ import Register from './Components/Login_Register/Register';
 import ProjectManagement from './Components/ProjectRelated/ProjectManagement';
 import ProjectsPage from './Components/ProjectRelated/ProjectsPage';
 import Home from './Components/Home/Home';
+import SpringForm from './Components/SpringRelated/SpringForm';
+import TaskForm from './Components/TaskRelated/TaskForm'
+import EditSpring from './Components/SpringRelated/EditSpring';
+import EditTask from './Components/TaskRelated/EditTask';
 
 function App() {
   return (
@@ -35,8 +39,12 @@ function App() {
           <Route path="Projects" element={<ProjectsPage />} />
           <Route path="Project/:id" element={<ProjectManagement />}>
             <Route index element={<SpringPage />} />
+            <Route path="NewSpring" element={<SpringForm />} />
+            <Route path="EditSpring/:Sid" element={<EditSpring />} />
             <Route path="Springs" element={<SpringPage />} />
             <Route path="Tasks" element={<TasksPage />} />
+            <Route path="NewTask" element={<TaskForm />} />
+            <Route path="EditTask/:Tid" element={<EditTask />} />
             <Route path="Backlogs" element={<AssignSpringTask />} />
             <Route path="TaskBoard" element={<ManageTasks />} />
           </Route>

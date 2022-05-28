@@ -45,12 +45,13 @@ function LoggedInNav({ project }) {
                 ></span>
               </li>
               <li className="nav-item me-4">
-                <p
+                <Link
+                  to="/Home"
                   onClick={logout}
                   className="nav-link btn btn-primary text-light m-0"
                 >
                   Log out
-                </p>
+                </Link>
               </li>
             </ul>
           </div>

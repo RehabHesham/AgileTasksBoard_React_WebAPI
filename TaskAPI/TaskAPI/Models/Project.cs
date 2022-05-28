@@ -21,6 +21,8 @@ namespace TaskAPI.Models
         public string Client { get; set; }
         [Required]
         public string Status { get; set; } = "new";
+        [Required]
+        public int PercentageDone { get; set; }
 
         //Forien key
         [Required,ForeignKey("Owner")]

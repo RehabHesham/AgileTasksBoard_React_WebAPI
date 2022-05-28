@@ -24,7 +24,7 @@ namespace TaskAPI.Controllers
         }
         // GET: api/Spring
         [HttpGet("projectId={id:int}")]
-        public ActionResult<List<SpringDTO>> GetSprings(int id)
+        public ActionResult<List<SpringDTO>> FindByProject(int id)
         {
             return springService.FindByProject(id);
         }
@@ -78,13 +78,17 @@ namespace TaskAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteSpring(int id)
         {
-            var spring = springService.GetById(id);
+            var spring = springService.GetByIdNoTrack(id);
             if (spring == null)
             {
                 return NotFound();
             }
 
-            springService.Remove(spring);
+            int result = springService.Remove(spring);
+            if (result <= 0)
+            {
+                return StatusCode(500);
+            }
 
             return NoContent();
         }

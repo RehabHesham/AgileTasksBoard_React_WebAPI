@@ -82,7 +82,9 @@ function FooterT() {
         </div>
         <div className="text-center p-3">
           © 2020 Copyright:&nbsp;
-          <a className="text-white">Owner</a>
+          <a href="#!" className="text-white">
+            Owner
+          </a>
         </div>
       </footer>
     </>

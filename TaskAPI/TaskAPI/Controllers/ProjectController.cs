@@ -73,7 +73,7 @@ namespace TaskAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteProject(int id)
         {
-            var project = projectService.GetById(id);
+            var project = projectService.GetByIdNoTrack(id);
             if (project == null)
             {
                 return NotFound();

@@ -30,6 +30,11 @@ namespace TaskAPI.Services
             return conversions.convertProjectToDTO(projectRepo.GetById(id));
         }
 
+        public ProjectDTO GetByIdNoTrack(int id)
+        {
+            return conversions.convertProjectToDTO(projectRepo.GetByIdNoTrack(id));
+        }
+
         public int Remove(ProjectDTO project)
         {
             return projectRepo.Remove(conversions.convertDTOtoProject(project));

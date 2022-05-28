@@ -8,6 +8,7 @@ namespace TaskAPI.Services
         int Create(ProjectDTO project);
         List<ProjectDTO> GetAll();
         ProjectDTO GetById(int id);
+        ProjectDTO GetByIdNoTrack(int id);
         int Remove(ProjectDTO project);
         int Update(ProjectDTO project);
     }

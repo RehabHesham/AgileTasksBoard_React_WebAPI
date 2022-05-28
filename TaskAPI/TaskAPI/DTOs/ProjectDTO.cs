@@ -20,6 +20,8 @@ namespace TaskAPI.DTOs
         public string Client { get; set; }
         [Required]
         public string Status { get; set; } = "new";
+        [Required]
+        public int PercentageDone { get; set; }
 
         //Forien key
         [Required]

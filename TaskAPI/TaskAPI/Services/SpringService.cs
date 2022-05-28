@@ -42,6 +42,11 @@ namespace TaskAPI.Services
         public int Update(SpringDTO spring)
         {
             return springRepo.Update(conversions.convertDTOtoSpring(spring));
-        }    
+        }
+
+        public SpringDTO GetByIdNoTrack(int id)
+        {
+            return conversions.convertSpringToDTO(springRepo.GetByIdNoTrack(id));
+        }
     }
 }

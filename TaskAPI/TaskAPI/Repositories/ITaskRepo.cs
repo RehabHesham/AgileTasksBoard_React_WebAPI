@@ -8,8 +8,10 @@ namespace TaskAPI.Repositories
         int Create(Task task);
         List<Task> GetAll();
         Task GetById(int id);
+        Task GetByIdNoTrack(int id);
         List<Task> FindByProject(int id);
         int Remove(Task task);
         int Update(Task task);
+        int UpdateAssignedSpring(int taskId, int? springId);
     }
 }

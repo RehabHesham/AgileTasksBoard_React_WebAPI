@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaskAPI.Models;
@@ -54,6 +55,8 @@ namespace TaskAPI.Repositories
                 oldtask.Weight = task.Weight;
                 oldtask.WorkerId = task.WorkerId;
                 oldtask.ProjectId = task.ProjectId;
+                oldtask.Status = task.Status;
+                oldtask.PercentageDone = task.PercentageDone;   
                 oldtask.SpringId = task.SpringId;
                 try
                 {
@@ -67,6 +70,20 @@ namespace TaskAPI.Repositories
             }
             return -1;
         }
+        public int UpdateAssignedSpring(int taskId,int? springId)
+        {
+            Task oldtask = GetById(taskId);
+            oldtask.SpringId = springId;
+            try
+            {
+                db.SaveChanges();
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
         public int Remove(Task task)
         {
             try
@@ -78,6 +95,11 @@ namespace TaskAPI.Repositories
             {
                 return -1;
             }
+        }
+
+        public Task GetByIdNoTrack(int id)
+        {
+            return db.tasks.AsNoTracking().SingleOrDefault(p => p.Id == id);
         }
     }
 }

@@ -15,6 +15,8 @@ namespace TaskAPI.Models
         public int? Weight { get; set; }
         [Required]
         public string Status { get; set; } = "new";
+        [Required]
+        public int PercentageDone { get; set; }
 
         //Foreiegn Key
         [ForeignKey("Spring")]

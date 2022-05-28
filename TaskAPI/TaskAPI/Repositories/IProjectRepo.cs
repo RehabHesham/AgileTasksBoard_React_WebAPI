@@ -8,6 +8,7 @@ namespace TaskAPI.Repositories
         int Create(Project project);
         List<Project> GetAll();
         Project GetById(int id);
+        Project GetByIdNoTrack(int id);
         int Remove(Project project);
         int Update(Project project);
     }

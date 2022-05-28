@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TaskAPI.Models;
@@ -50,6 +51,9 @@ namespace TaskAPI.Repositories
                 Spring oldspring = GetById(spring.Id);
                 oldspring.Name = spring.Name;
                 oldspring.EndDate = spring.EndDate;
+                oldspring.Duration = spring.Duration;
+                oldspring.Status = spring.Status;
+                oldspring.PercentageDone = spring.PercentageDone;
                 oldspring.StartDate = spring.StartDate;
                 oldspring.ProjectId = spring.ProjectId;
                 try
@@ -75,6 +79,11 @@ namespace TaskAPI.Repositories
             {
                 return -1;
             }
+        }
+
+        public Spring GetByIdNoTrack(int id)
+        {
+            return db.springs.AsNoTracking().SingleOrDefault(p => p.Id == id);
         }
     }
 }

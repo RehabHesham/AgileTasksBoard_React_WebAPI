@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using TaskAPI.DTOs;
 using TaskAPI.Services;
@@ -40,7 +39,7 @@ namespace TaskAPI.Controllers
 
         // GET: api/Task/5
         [HttpGet("projectId={id:int}")]
-        public ActionResult<List<TaskDTO>> FindTaskByProject(int id)
+        public ActionResult<List<TaskDTO>> FindByProject(int id)
         {
             return taskService.FindByProject(id);
         }
@@ -62,10 +61,21 @@ namespace TaskAPI.Controllers
             }
             return StatusCode(500);
         }
+        [HttpPatch("{id:int}")]
+        public IActionResult UpdateTaskSpring(int id,TaskDTO task)
+        {
+            int result = taskService.UpdateAssignedSpring(id, task.SpringId);
+
+            if (result < 0)
+            {
+                return StatusCode(500);
+            }
+            return NoContent();
+        }
 
         // POST: api/Task
         [HttpPost]
-        public ActionResult<TaskDTO> AddTask(TaskDTO task)
+        public ActionResult<TaskDTO> Create(TaskDTO task)
         {
             int result = taskService.Create(task);
             if (result <= 0)
@@ -73,14 +83,14 @@ namespace TaskAPI.Controllers
                 return StatusCode(500);
             }
             task.Id = result;
-            return CreatedAtAction("GetTask", new { id = task.Id }, task);
+            return CreatedAtAction("GetTaskByID", new { id = task.Id }, task);
         }
 
         // DELETE: api/Task/5
         [HttpDelete("{id}")]
         public IActionResult DeleteTask(int id)
         {
-            var task = taskService.GetById(id);
+            var task = taskService.GetByIdNoTrack(id);
             if (task == null)
             {
                 return NotFound();
