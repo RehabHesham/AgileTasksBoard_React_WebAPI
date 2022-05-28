@@ -42,7 +42,7 @@ function TaskCard({ assigned, task, springs, setTasks }) {
   return (
     <>
       {task && (
-        <Card sx={{ maxWidth: assigned ? "auto" : 345 }} onClick={toggleShow}>
+        <Card onClick={toggleShow}>
           <CardHeader
             avatar={
               assigned ? (

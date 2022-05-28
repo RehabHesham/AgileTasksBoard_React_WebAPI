@@ -45,7 +45,7 @@ function AssignSpringTask() {
                   tasks
                     .filter((task) => task.springId === null)
                     .map((task, index) => (
-                      <div key={index} id={task.id}>
+                      <div key={index} id={task.id} className="col-12 col-md-6">
                         <TaskCard
                           assigned={false}
                           task={task}
