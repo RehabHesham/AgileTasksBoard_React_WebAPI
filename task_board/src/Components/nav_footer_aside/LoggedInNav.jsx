@@ -1,4 +1,4 @@
-import { Toolbar } from "@mui/material";
+import { Paper, Toolbar } from "@mui/material";
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
@@ -10,7 +10,7 @@ function LoggedInNav({ project }) {
   return (
     <>
       <Toolbar />
-      <paper
+      <Paper
         elevation={3}
         style={{ backgroundColor: "rgb(151 193 251 / 56%)" }}
       >
@@ -61,7 +61,7 @@ function LoggedInNav({ project }) {
             </div>
           </div>
         </nav>
-      </paper>
+      </Paper>
     </>
   );
 }
