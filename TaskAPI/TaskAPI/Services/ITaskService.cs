@@ -13,6 +13,7 @@ namespace TaskAPI.Services
         List<TaskDTO> FindByProject(int id);
         int Remove(TaskDTO task);
         int Update(TaskDTO task);
+        int UpdateStatus(TaskDTO task);
         int UpdateAssignedSpring(int taskId, int? springId);
     }
 }

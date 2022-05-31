@@ -61,10 +61,21 @@ namespace TaskAPI.Controllers
             }
             return StatusCode(500);
         }
-        [HttpPatch("{id:int}")]
+        [HttpPost("{id:int}/springUpdate")]
         public IActionResult UpdateTaskSpring(int id,TaskDTO task)
         {
             int result = taskService.UpdateAssignedSpring(id, task.SpringId);
+
+            if (result < 0)
+            {
+                return StatusCode(500);
+            }
+            return NoContent();
+        }
+        [HttpPost("{id:int}/statusUpdate")]
+        public IActionResult UpdateTaskStatus(int id, TaskDTO task)
+        {
+            int result = taskService.UpdateStatus(task);
 
             if (result < 0)
             {

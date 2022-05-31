@@ -22,6 +22,11 @@ namespace TaskAPI.Repositories
         {
             return db.springs.SingleOrDefault(p => p.Id == id);
         }
+
+        public Spring GetByIdIncludeTasks(int id)
+        {
+            return db.springs.Include(s=>s.Tasks).SingleOrDefault(p => p.Id == id);
+        }
         public List<Spring> FindByProject(int id)
         {
             return db.springs.Where(s=>s.ProjectId == id).ToList();

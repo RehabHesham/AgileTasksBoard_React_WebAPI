@@ -9,6 +9,7 @@ namespace TaskAPI.Repositories
         List<Spring> GetAll();
         List<Spring> FindByProject(int id);
         Spring GetById(int id);
+        Spring GetByIdIncludeTasks(int id);
         Spring GetByIdNoTrack(int id);
         int Remove(Spring spring);
         int Update(Spring spring);

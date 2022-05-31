@@ -10,7 +10,7 @@ function TaskForm({ preloadData }) {
   const navigate = useNavigate();
   const { id, Tid } = useParams();
   console.log(id, Tid);
-  const [project, setproject] = useOutletContext();
+  const [, setproject] = useOutletContext();
   const {
     register,
     handleSubmit,

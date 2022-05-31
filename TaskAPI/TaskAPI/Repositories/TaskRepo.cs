@@ -8,11 +8,13 @@ namespace TaskAPI.Repositories
 {
     public class TaskRepo : ITaskRepo
     {
-        private readonly AgileDBEntity db;
+        private AgileDBEntity db;
+        
 
         public TaskRepo(AgileDBEntity context)
         {
             db = context;
+            
         }
         public List<Task> GetAll()
         {
@@ -70,6 +72,26 @@ namespace TaskAPI.Repositories
             }
             return -1;
         }
+
+        public int UpdateStatus(Task task)
+        {
+            if (task != null)
+            {
+                Task oldtask = GetById(task.Id);
+                oldtask.Status = task.Status;
+                oldtask.PercentageDone= task.PercentageDone;
+                try
+                {
+                    db.SaveChanges();
+                    return 1;
+                }
+                catch (Exception ex)
+                {
+                    return -1;
+                }
+            }
+            return -1;
+        }
         public int UpdateAssignedSpring(int taskId,int? springId)
         {
             Task oldtask = GetById(taskId);
@@ -101,5 +123,7 @@ namespace TaskAPI.Repositories
         {
             return db.tasks.AsNoTracking().SingleOrDefault(p => p.Id == id);
         }
+
+        
     }
 }

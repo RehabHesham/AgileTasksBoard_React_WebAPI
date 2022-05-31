@@ -28,7 +28,8 @@ function SpringPage() {
   }, []);
   let data;
   let options;
-  if (springs) {
+
+  if (springs != null) {
     const columns = [
       { type: "string", label: "Task ID" },
       { type: "string", label: "Task Name" },

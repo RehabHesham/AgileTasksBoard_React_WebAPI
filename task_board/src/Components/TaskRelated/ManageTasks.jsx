@@ -1,6 +1,7 @@
 import { InputLabel, MenuItem, Select } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
+import { projectApi } from "../../Services/ProjectAPI";
 import { springApi } from "../../Services/SpringAPI";
 import { taskApi } from "../../Services/TaskAPI";
 import TaskBoard from "./TaskBoard";
@@ -10,6 +11,7 @@ function ManageTasks() {
   const [tasks, setTasks] = useState(null);
   const [springs, setSprings] = useState(null);
   const [springId, setSpring] = React.useState(0);
+  const [, setproject] = useOutletContext();
 
   const handleChange = (event) => {
     setSpring(event.target.value);
@@ -24,7 +26,13 @@ function ManageTasks() {
       setSprings(spring);
     };
     fetchData();
+    return async () => {
+      console.log("Leaving....");
+      console.log(setproject);
+      setproject((await projectApi.getProjectByID(id)).data);
+    };
   }, []);
+
   return (
     <>
       {tasks && springs && (
@@ -58,7 +66,13 @@ function ManageTasks() {
           </div>
           <div id="manageTaskStatus">
             <div className="container">
-              {springId && <TaskBoard tasks={tasks} springId={springId} />}
+              {springId && (
+                <TaskBoard
+                  tasks={tasks}
+                  springId={springId}
+                  setTasks={setTasks}
+                />
+              )}
             </div>
           </div>
         </div>

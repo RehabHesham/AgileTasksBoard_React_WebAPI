@@ -6,21 +6,21 @@ function MainContent() {
   return (
     <>
       <Toolbar />
-      <nav class="navbar-expand-lg navbar-light bg-light p-2">
+      <nav className="navbar-expand-lg navbar-light bg-light p-2">
         <div className="row">
           <div className="col-8 d-flex align-items-center">
-            <ul class="nav">
-              <li class="nav-item">
+            <ul className="nav">
+              <li className="nav-item">
                 <Link to="Home" className="nav-link active text-dark">
                   Home
                 </Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link to="AboutUs" className="nav-link text-dark">
                   About Us
                 </Link>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link to="ContactUs" className="nav-link text-dark">
                   Contact Us
                 </Link>
@@ -28,7 +28,7 @@ function MainContent() {
             </ul>
           </div>
           <div className="col-4">
-            <ul class="nav justify-content-end">
+            <ul className="nav justify-content-end">
               <li className="nav-item mx-3">
                 <Link to="Login" className="nav-link btn btn-outline-primary">
                   Login

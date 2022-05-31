@@ -13,7 +13,7 @@ import { Link, useParams } from "react-router-dom";
 import { taskApi } from "../../Services/TaskAPI";
 import TableRows from "../Shared/TableRows";
 
-function TasksPage(props) {
+function TasksPage() {
   console.log("Rerender page");
   const { id } = useParams();
   const [task, setTask] = useState(null);

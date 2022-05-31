@@ -18,7 +18,9 @@ let addTask = (task) => {
 
 let editTask = (taskID, task) => axios.put(`${baseURL}/Task/${taskID}`, task);
 
-let editTaskSpring = (taskID, task) => axios.patch(`${baseURL}/Task/${taskID}`, task);
+let editTaskSpring = (taskID, task) => axios.post(`${baseURL}/Task/${taskID}/springUpdate`, task);
+
+let editTaskStatus = (taskID, task) => axios.post(`${baseURL}/Task/${taskID}/statusUpdate`, task);
 
 let deleteTask = (taskID) => axios.delete(`${baseURL}/Task/${taskID}`);
 
@@ -29,5 +31,6 @@ export let taskApi = {
     addTask,
     editTask,
     editTaskSpring,
+    editTaskStatus,
     deleteTask
 }

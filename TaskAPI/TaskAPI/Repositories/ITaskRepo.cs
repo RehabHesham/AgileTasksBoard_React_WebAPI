@@ -12,6 +12,7 @@ namespace TaskAPI.Repositories
         List<Task> FindByProject(int id);
         int Remove(Task task);
         int Update(Task task);
+        int UpdateStatus(Task task);
         int UpdateAssignedSpring(int taskId, int? springId);
     }
 }

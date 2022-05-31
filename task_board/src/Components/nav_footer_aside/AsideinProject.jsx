@@ -81,7 +81,7 @@ function AsideT() {
       {/* <Box sx={{ display: "flex" }}></Box> */}
 
       <Box
-        class="col-12"
+        className="col-12"
         style={{ minHeight: 490 }}
         sx={{ display: "inline-flex" }}
       >

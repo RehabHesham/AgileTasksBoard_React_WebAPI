@@ -38,6 +38,7 @@ namespace TaskAPI
             services.AddScoped<ISpringRepo, SpringRepo>();
 
             services.AddScoped<IConversions, Conversions>();
+            services.AddScoped<IProgressCalculations, ProgressCalculations>();
 
             services.AddScoped<ITaskService, TaskService>();
             services.AddScoped<ISpringService, SpringService>();
