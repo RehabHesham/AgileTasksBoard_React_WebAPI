@@ -58,14 +58,16 @@ namespace TaskAPI.Services
             {
                 percentageDone += spring.PercentageDone*((decimal)spring.Duration/springsDuration);
             }
-            project.PercentageDone = (int)percentageDone;
+            project.PercentageDone = (int)Math.Round(percentageDone);
             if(project.Springs.FirstOrDefault(s=>s.Status == "Current") == null && project.PercentageDone != 100)
             {
                 Spring spring = project.Springs.OrderBy(s => s.StartDate).FirstOrDefault(s => s.Status == "Future");
+                if(spring != null) {
                 spring.Status = "Current";
                 springRepo.Update(spring);
+                }
             }
-            if (project.PercentageDone >= 100)
+            if (project.PercentageDone == 100)
             {
                 project.Status = "Completed";
             }else if(project.PercentageDone == 0)

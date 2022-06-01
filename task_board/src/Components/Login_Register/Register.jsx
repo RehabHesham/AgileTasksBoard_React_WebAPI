@@ -26,7 +26,7 @@ function Register() {
   let addUser = async (user) => {
     let response = await userApi.register(user);
     console.log(response.data);
-    navigate("/Projects");
+    navigate("/login");
   };
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
@@ -151,10 +151,10 @@ function Register() {
                     confirm.localeCompare(getValues("password")) === 0,
                 })}
               />
-              {errors.password?.type === "required" &&
+              {errors.confirmPassword?.type === "required" &&
                 required("Confirm Password")}
               {/* ?.type === "validate" */}
-              {errors.password && (
+              {errors.confirmPassword?.type === "validate" && (
                 <div className="alert alert-danger text-danger mt-2">
                   Confirm Password must match Password
                 </div>
