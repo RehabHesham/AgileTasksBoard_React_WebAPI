@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import { userApi } from "../../Services/UserAPI";
 
 function Login() {
   const {
@@ -24,24 +25,15 @@ function Login() {
     alert(JSON.stringify(data));
     let result;
     try {
-      // result = await userApi.userLogin({
-      //   email: data.email,
-      //   password: data.password,
-      // });
-      // console.log(result);
+      result = await userApi.login({
+        email: data.email,
+        password: data.password,
+      });
+      console.log(result);
       // dispatch(UserLogin(result.data));
-      navigate("/home");
+      navigate("/Projects");
     } catch (err) {
-      switch (err.response.status) {
-        case 401:
-          setLoginErrState(401);
-          setTimeout(() => {
-            setLoginErrState(false);
-          }, 3000);
-          break;
-        default:
-          setLoginErrState(500);
-      }
+      console.log(err);
     }
   };
   const required = (input) => {

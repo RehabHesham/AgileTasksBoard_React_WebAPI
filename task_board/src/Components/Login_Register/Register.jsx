@@ -4,27 +4,29 @@ import { Card } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
+import { userApi } from "../../Services/UserAPI";
+
 function Register() {
   const {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors, submitCount, dirtyFields },
   } = useForm({
     defaultValues: {
-      name: "",
-      age: 0,
       username: "",
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
   const navigate = useNavigate();
   let addUser = async (user) => {
-    // let response = await userApi.adduser(user);
-    // console.log(response.data);
-    navigate("/home");
+    let response = await userApi.register(user);
+    console.log(response.data);
+    navigate("/Projects");
   };
   const onSubmit = (data) => {
     alert(JSON.stringify(data));
@@ -55,93 +57,7 @@ function Register() {
                 <h2>Register</h2>
               </div>
             </div>
-            {/* <h3>Register New User</h3> */}
             <div className="mb-3">
-              <TextField
-                id="name"
-                label="Name"
-                variant="filled"
-                focused
-                {...register("name", {
-                  required: true,
-                  pattern: /^[a-zA-Z ]+$/,
-                })}
-                className="form-control"
-                color="primary"
-              />
-              {/* color={
-                  errors.name
-                    ? "danger"
-                    : submitCount > 0 && dirtyFields.name
-                    ? "sucess"
-                    : "primary"
-                } */}
-              {errors.name?.type === "required" && required("Name")}
-              {errors.name?.type === "pattern" && (
-                <div className="alert alert-danger text-danger mt-2">
-                  Name should contains only letters
-                </div>
-              )}
-            </div>
-            <div className="mb-3">
-              {/* <label htmlFor="age">Age</label>
-              <input
-                id="age"
-                label="Filled success"
-                variant="filled"
-                color="success"
-                focused
-                {...register("age", {
-                  required: true,
-                })}
-                className="form-control"
-                placeholder="Enter age"
-                type="number"
-                style={{
-                  borderColor: errors.age
-                    ? "red"
-                    : submitCount > 0 && dirtyFields.age
-                    ? "green"
-                    : "gray",
-                }}
-              /> */}
-              <TextField
-                id="age"
-                label="Age"
-                variant="filled"
-                type={"number"}
-                className="form-control"
-                color="primary"
-                focused
-                {...register("age", {
-                  required: true,
-                })}
-              />
-              {errors.age?.type === "required" && required("Age")}
-            </div>
-            <div className="mb-3">
-              {/* <label htmlFor="username">Username</label>
-              <input
-                id="username"
-                label="Filled success"
-                variant="filled"
-                color="success"
-                focused
-                {...register("username", {
-                  required: true,
-                  pattern:
-                    /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
-                })}
-                className="form-control"
-                placeholder="Enter username"
-                style={{
-                  borderColor: errors.username
-                    ? "red"
-                    : submitCount > 0 && dirtyFields.username
-                    ? "green"
-                    : "gray",
-                }}
-              /> */}
               <TextField
                 id="username"
                 label="Username"
@@ -170,27 +86,6 @@ function Register() {
               )}
             </div>
             <div className="mb-3">
-              {/* <label htmlFor="email">Email address</label>
-              <input
-                id="email"
-                label="Filled success"
-                variant="filled"
-                color="success"
-                focused
-                {...register("email", {
-                  required: true,
-                  pattern: /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i,
-                })}
-                className="form-control"
-                placeholder="Enter email"
-                style={{
-                  borderColor: errors.email
-                    ? "red"
-                    : submitCount > 0 && dirtyFields.email
-                    ? "green"
-                    : "gray",
-                }} 
-              />*/}
               <TextField
                 id="email"
                 label="Email"
@@ -211,29 +106,6 @@ function Register() {
               )}
             </div>
             <div className="mb-3">
-              {/* <label htmlFor="password">Password</label>
-              <input
-                id="password"
-                label="Filled success"
-                variant="filled"
-                color="success"
-                focused
-                {...register("password", {
-                  required: true,
-                  pattern:
-                    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
-                })}
-                className="form-control"
-                placeholder="Enter password"
-                type="password"
-                style={{
-                  borderColor: errors.password
-                    ? "red"
-                    : submitCount > 0 && dirtyFields.password
-                    ? "green"
-                    : "gray",
-                }}
-              /> */}
               <TextField
                 id="password"
                 label="Password"
@@ -261,6 +133,30 @@ function Register() {
                     <li>One number</li>
                     <li>One special character</li>
                   </ul>
+                </div>
+              )}
+            </div>
+            <div className="mb-3">
+              <TextField
+                id="confirmPassword"
+                label="Confirm Password"
+                variant="filled"
+                type={"password"}
+                className="form-control"
+                color="primary"
+                focused
+                {...register("confirmPassword", {
+                  required: true,
+                  validate: (confirm) =>
+                    confirm.localeCompare(getValues("password")) === 0,
+                })}
+              />
+              {errors.password?.type === "required" &&
+                required("Confirm Password")}
+              {/* ?.type === "validate" */}
+              {errors.password && (
+                <div className="alert alert-danger text-danger mt-2">
+                  Confirm Password must match Password
                 </div>
               )}
             </div>

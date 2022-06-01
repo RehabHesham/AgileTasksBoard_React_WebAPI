@@ -14,22 +14,25 @@ import {
 import { Table } from "react-bootstrap";
 import TableRows from "../Shared/TableRows";
 import { springApi } from "../../Services/SpringAPI";
+import { projectApi } from "../../Services/ProjectAPI";
 
 function SpringPage() {
   const { id } = useParams();
   const [springs, setSpring] = useState(null);
-  const [project] = useOutletContext();
+  const [project, setproject] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       let spring = (await springApi.findSpringByProjectID(id)).data;
       setSpring(spring);
+      let project = (await projectApi.getProjectByID(id)).data;
+      setproject(project);
     };
     fetchData();
   }, []);
   let data;
   let options;
 
-  if (springs != null) {
+  if (springs != null && project != null) {
     const columns = [
       { type: "string", label: "Task ID" },
       { type: "string", label: "Task Name" },
@@ -42,6 +45,8 @@ function SpringPage() {
     ];
 
     const extractDate = (dateTime) => {
+      console.log(project.startDate);
+      console.log(dateTime);
       let splited = dateTime.split("T");
       console.log(splited);
       let parts = splited[0].split("-");
@@ -84,7 +89,7 @@ function SpringPage() {
   }
   return (
     <>
-      {springs && (
+      {springs && project && (
         <div className="my-4">
           <h3 className="my-4">
             <span

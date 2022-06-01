@@ -11,7 +11,7 @@ namespace TaskAPI.DTOs
         public string Name { get; set; }
         [Required]
         public DateTime StartDate { get; set; }
-        [Required]
+        [Required, IsDateAfter("StartDate")]
         public DateTime EndDate { get; set; }
         [Required]
         public int Duration { get; set; }

@@ -13,6 +13,7 @@ namespace TaskAPI.DTOs
         public decimal? EffortHours { get; set; }
         [Required]
         public DateTime StartDate { get; set; }
+        [IsDateAfter("StartDate")]
         public DateTime? EndDate { get; set; }
         [Required]
         public string Description { get; set; }
